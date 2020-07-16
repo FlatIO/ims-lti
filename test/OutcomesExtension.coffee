@@ -59,18 +59,6 @@ describe 'LTI.Extensions.Outcomes', () =>
       @provider.outcome_service.send_replace_result_with_url .5, 'http://test.com', (err, result) =>
         should.not.exist err
         result.should.equal true
-
-    it 'should not be able to send a payload that the consumer does not support', () =>
-      provider = new lti.Provider 'key', 'secret'
-      provider.parse_request
-        body:
-          ext_outcome_data_values_accepted: 'url'
-          lis_outcome_service_url: "http://127.0.0.1:1337/service/url"
-          lis_result_sourcedid: "12"
-
-      provider.outcome_service.send_replace_result_with_text .5, 'Hello, world!', (err, result) =>
-        should.exist err
-        result.should.equal false
       
     it 'should return the error message from the response', (next) =>
       provider = new lti.Provider 'key', 'wrong_secret'

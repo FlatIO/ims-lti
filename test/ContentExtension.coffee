@@ -1,6 +1,6 @@
-url = require 'url'
-
-lti = require '../'
+url     = require 'url'
+should  = require 'should'
+lti     = require '../'
 
 describe 'LTI.Extensions.Content', () ->
   beforeEach () ->
@@ -62,7 +62,7 @@ describe 'LTI.Extensions.Content', () ->
       ret_url.query.return_type.should.equal 'file'
       ret_url.query.url.should.equal 'http://example.com/myfile.txt'
       ret_url.query.text.should.equal 'myfile.txt'
-      ret_url.query.should.not.have.property 'content_type'
+      should.not.exist ret_url.query.content_type
 
     it 'should generate a query string for the optional parameters', () ->
       @provider.ext_content.send_file @res, 'http://example.com/myfile.txt', 'myfile.txt', 'text/plain'
@@ -85,9 +85,9 @@ describe 'LTI.Extensions.Content', () ->
       @res.status.should.equal 303
       ret_url.query.return_type.should.equal 'iframe'
       ret_url.query.url.should.equal 'http://example.com/myfile.txt'
-      ret_url.query.should.not.have.property 'title'
-      ret_url.query.should.not.have.property 'width'
-      ret_url.query.should.not.have.property 'height'
+      should.not.exist ret_url.query.title
+      should.not.exist ret_url.query.width
+      should.not.exist ret_url.query.height
 
     it 'should generate a query string for the optional parameters', () ->
       @provider.ext_content.send_iframe @res, 'http://example.com/myfile.txt', 'title', 800, 600
@@ -111,9 +111,9 @@ describe 'LTI.Extensions.Content', () ->
       @res.status.should.equal 303
       ret_url.query.return_type.should.equal 'image_url'
       ret_url.query.url.should.equal 'http://example.com/myfile.jpg'
-      ret_url.query.should.not.have.property 'text'
-      ret_url.query.should.not.have.property 'width'
-      ret_url.query.should.not.have.property 'height'
+      should.not.exist ret_url.query.text
+      should.not.exist ret_url.query.width
+      should.not.exist ret_url.query.height
 
     it 'should generate a query string for the optional parameters', () ->
       @provider.ext_content.send_image_url @res, 'http://example.com/myfile.jpg', 'alt', 800, 600
@@ -137,8 +137,8 @@ describe 'LTI.Extensions.Content', () ->
       @res.status.should.equal 303
       ret_url.query.return_type.should.equal 'lti_launch_url'
       ret_url.query.url.should.equal 'http://example.com/test'
-      ret_url.query.should.not.have.property 'title'
-      ret_url.query.should.not.have.property 'text'
+      should.not.exist ret_url.query.title
+      should.not.exist ret_url.query.text
 
     it 'should generate a query string for the optional parameters', () ->
       @provider.ext_content.send_lti_launch_url @res, 'http://example.com/test', 'title', 'text'
@@ -161,7 +161,7 @@ describe 'LTI.Extensions.Content', () ->
       @res.status.should.equal 303
       ret_url.query.return_type.should.equal 'oembed'
       ret_url.query.url.should.equal 'http://example.com/test'
-      ret_url.query.should.not.have.property 'endpoint'
+      should.not.exist ret_url.query.endpoint
 
     it 'should generate a query string for the optional parameters', () ->
       @provider.ext_content.send_oembed @res, 'http://example.com/test', 'http://example.com/test2'
@@ -183,9 +183,9 @@ describe 'LTI.Extensions.Content', () ->
       @res.status.should.equal 303
       ret_url.query.return_type.should.equal 'url'
       ret_url.query.url.should.equal 'http://example.com/test'
-      ret_url.query.should.not.have.property 'text'
-      ret_url.query.should.not.have.property 'title'
-      ret_url.query.should.not.have.property 'target'
+      should.not.exist ret_url.query.text
+      should.not.exist ret_url.query.title
+      should.not.exist ret_url.query.target
 
     it 'should generate a query string for the optional parameters', () ->
       @provider.ext_content.send_url @res, 'http://example.com/test', 'text', 'title', '_blank'

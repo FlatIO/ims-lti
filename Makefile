@@ -1,9 +1,8 @@
-MOCHA_OPTS = --require coffee-script/register --compilers coffee:coffee-script --check-leaks
+MOCHA_OPTS = --require coffee-script/register --check-leaks ./test/*.coffee
 REPORTER = spec
 
 check: test
 
-test: MULTI="${REPORTER}=- html-cov=coverage/coverage.html"
 test: cover test-unit
 
 ci: MULTI="spec=- mocha-lcov-reporter=coverage/lcov.info"
@@ -11,9 +10,9 @@ ci: cover test-unit
 
 test-unit:
 	mkdir -p coverage && \
-	NODE_ENV=test multi=$(MULTI) \
+	NODE_ENV=test 
 		./node_modules/.bin/mocha \
-			--reporter mocha-multi \
+			--exit \
 			$(MOCHA_OPTS)
 
 build: clean
