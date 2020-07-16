@@ -7,12 +7,12 @@ This is a nodejs library used to help create Tool Providers for the
 
 ## Install
 ```
-npm install ims-lti --save
+npm install @flat/ims-lti --save
 ```
 
 To require the library into your project
 ```coffeescript
-require 'ims-lti'
+require '@flat/ims-lti'
 ```
 
 ## Supported LTI Versions
