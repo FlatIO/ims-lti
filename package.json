@@ -34,7 +34,7 @@
     "prepublish": "make build"
   },
   "dependencies": {
-    "node-uuid": "~1.4.0",
+    "uuid": "^8.2.0",
     "xml2js": "~0.4.0",
     "xmlbuilder": "~2.4.0"
   },
