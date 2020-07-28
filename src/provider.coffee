@@ -57,7 +57,7 @@ class Provider
     correct_version      = require('./ims-lti').supported_versions.indexOf(body.lti_version) isnt -1
     has_resource_link_id = body.resource_link_id?
     omits_content_item_params = 
-      not body.resource_link_id? and
+      not body.resource_link_id and
       not body.resource_link_title? and 
       not body.resource_link_description? and 
       not body.launch_presentation_return_url? and
