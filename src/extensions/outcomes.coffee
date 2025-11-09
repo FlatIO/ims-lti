@@ -2,7 +2,6 @@ crypto       = require 'crypto'
 http         = require 'http'
 https        = require 'https'
 url          = require 'url'
-uuid         = require 'uuid'
 
 
 xml2js       = require 'xml2js'
@@ -37,7 +36,7 @@ class OutcomeDocument
 
     # Generate a unique identifier and apply the version to the header information
     @head.ele 'imsx_version', 'V1.0'
-    @head.ele 'imsx_messageIdentifier', uuid.v1()
+    @head.ele 'imsx_messageIdentifier', crypto.randomUUID()
 
     # Apply the source DID to the body
     @body.ele('sourcedGUID').ele('sourcedId', source_did)
@@ -191,7 +190,7 @@ class OutcomeService
   _build_headers: (body) ->
     headers =
       oauth_version:           '1.0'
-      oauth_nonce:             uuid.v4()
+      oauth_nonce:             crypto.randomUUID()
       oauth_timestamp:         Math.round Date.now() / 1000
       oauth_consumer_key:      @consumer_key
       oauth_body_hash:         crypto.createHash('sha1').update(body).digest('base64')
