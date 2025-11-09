@@ -1,7 +1,6 @@
 crypto       = require 'crypto'
 http         = require 'http'
 url          = require 'url'
-uuid         = require 'uuid'
 should       = require 'should'
 
 xml2js       = require 'xml2js'
@@ -197,13 +196,13 @@ exports.outcomesWebServer = () =>
     doc.ele 'imsx_POXBody'
 
     head.ele 'imsx_version', 'V1.0'
-    head.ele 'imsx_messageIdentifier', uuid.v4()
+    head.ele 'imsx_messageIdentifier', crypto.randomUUID()
 
     sub_head = head.ele 'imsx_statusInfo'
     sub_head.ele 'imsx_codeMajor', 'unsupported'
     sub_head.ele 'imsx_severity', 'status'
     sub_head.ele 'imsx_description', "#{type} is not supported"
-    sub_head.ele 'imsx_messageRefIdentifier', uuid.v4()
+    sub_head.ele 'imsx_messageRefIdentifier', crypto.randomUUID()
     sub_head.ele 'imsx_operationRefIdentifier', type
 
     res.end doc.end() + '\n'
@@ -218,13 +217,13 @@ exports.outcomesWebServer = () =>
     doc.ele 'imsx_POXBody'
 
     head.ele 'imsx_version', 'V1.0'
-    head.ele 'imsx_messageIdentifier', uuid.v4()
+    head.ele 'imsx_messageIdentifier', crypto.randomUUID()
 
     sub_head = head.ele 'imsx_statusInfo'
     sub_head.ele 'imsx_codeMajor', 'failure'
     sub_head.ele 'imsx_severity', 'signature'
     sub_head.ele 'imsx_description', 'The signature provided is not valid'
-    sub_head.ele 'imsx_messageRefIdentifier', uuid.v4()
+    sub_head.ele 'imsx_messageRefIdentifier', crypto.randomUUID()
     sub_head.ele 'imsx_operationRefIdentifier', 'signature'
 
     res.end doc.end() + '\n'
@@ -239,13 +238,13 @@ exports.outcomesWebServer = () =>
     doc.ele 'imsx_POXBody'
 
     head.ele 'imsx_version', 'V1.0'
-    head.ele 'imsx_messageIdentifier', uuid.v4()
+    head.ele 'imsx_messageIdentifier', crypto.randomUUID()
 
     sub_head = head.ele 'imsx_statusInfo'
     sub_head.ele 'imsx_codeMajor', 'failure'
     sub_head.ele 'imsx_severity', 'score'
     sub_head.ele 'imsx_description', 'The score provided is not valid'
-    sub_head.ele 'imsx_messageRefIdentifier', uuid.v4()
+    sub_head.ele 'imsx_messageRefIdentifier', crypto.randomUUID()
     sub_head.ele 'imsx_operationRefIdentifier', 'score'
 
     res.end doc.end() + '\n'
@@ -260,13 +259,13 @@ exports.outcomesWebServer = () =>
     doc.ele('imsx_POXBody').ele('replaceResultResponse')
 
     head.ele 'imsx_version', 'V1.0'
-    head.ele 'imsx_messageIdentifier', uuid.v4()
+    head.ele 'imsx_messageIdentifier', crypto.randomUUID()
 
     sub_head = head.ele 'imsx_statusInfo'
     sub_head.ele 'imsx_codeMajor', 'success'
     sub_head.ele 'imsx_severity', 'status'
     sub_head.ele 'imsx_description', "The score for #{id} is now #{score}"
-    sub_head.ele 'imsx_messageRefIdentifier', uuid.v4()
+    sub_head.ele 'imsx_messageRefIdentifier', crypto.randomUUID()
     sub_head.ele 'imsx_operationRefIdentifier', 'replaceResult'
 
     res.end doc.end() + '\n'
@@ -283,13 +282,13 @@ exports.outcomesWebServer = () =>
     result.ele 'textString', '.5'
 
     head.ele 'imsx_version', 'V1.0'
-    head.ele 'imsx_messageIdentifier', uuid.v4()
+    head.ele 'imsx_messageIdentifier', crypto.randomUUID()
 
     sub_head = head.ele 'imsx_statusInfo'
     sub_head.ele 'imsx_codeMajor', 'success'
     sub_head.ele 'imsx_severity', 'status'
     sub_head.ele 'imsx_description', 'Result read'
-    sub_head.ele 'imsx_messageRefIdentifier', uuid.v4()
+    sub_head.ele 'imsx_messageRefIdentifier', crypto.randomUUID()
     sub_head.ele 'imsx_operationRefIdentifier', 'readResult'
 
     res.end doc.end() + '\n'
@@ -304,13 +303,13 @@ exports.outcomesWebServer = () =>
     doc.ele('imsx_POXBody').ele('deleteResultResponse')
 
     head.ele 'imsx_version', 'V1.0'
-    head.ele 'imsx_messageIdentifier', uuid.v4()
+    head.ele 'imsx_messageIdentifier', crypto.randomUUID()
 
     sub_head = head.ele 'imsx_statusInfo'
     sub_head.ele 'imsx_codeMajor', 'success'
     sub_head.ele 'imsx_severity', 'status'
     sub_head.ele 'imsx_description', 'Result deleted'
-    sub_head.ele 'imsx_messageRefIdentifier', uuid.v4()
+    sub_head.ele 'imsx_messageRefIdentifier', crypto.randomUUID()
     sub_head.ele 'imsx_operationRefIdentifier', 'deleteResult'
 
     res.end doc.end() + '\n'
