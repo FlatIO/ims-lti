@@ -1,12 +1,33 @@
+# Development files
+src/
+test/
+coverage/
+Makefile
+
+# Configuration files
 .gitignore
-.npmignore
 .jshintrc
 coffeelint.json
+.editorconfig
 
-Makefile
-src
-test
-coverage
+# CI/CD
 .travis.yml
+.github/
 
+# Git
+.git/
+.gitattributes
+
+# Generated packages
 ims-lti*.tgz
+*.tgz
+
+# Lock files (pnpm-lock.yaml should be included for reproducible builds in CI, but not in published package)
+pnpm-lock.yaml
+
+# Node modules
+node_modules/
+
+# Misc
+.DS_Store
+*.log
