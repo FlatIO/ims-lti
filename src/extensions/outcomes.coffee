@@ -202,6 +202,7 @@ class OutcomeService
     Authorization:     'OAuth realm="",' + ("#{key}=\"#{utils.special_encode(val)}\"" for key, val of headers).join ','
     'Content-Type':    'application/xml'
     'Content-Length':  body.length
+    'User-Agent':      'LTI-1.1-Tool @flat/ims-lti'
 
 
   _process_response: (body, callback) ->
